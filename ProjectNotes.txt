@@ -1,0 +1,5 @@
+December 2025
+Machine intelligence as gaming
+
+29.12.2025
+	1337: The initial version of the codebase in .NET Framework 2.0, Windows Application.
