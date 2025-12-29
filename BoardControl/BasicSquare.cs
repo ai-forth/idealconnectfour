@@ -1,86 +1,77 @@
-using System;
 using System.Drawing;
 
 namespace BoardControl
 {
-	/// <summary>
-	/// Summary description for BasicSquare.
-	/// </summary>
-	public abstract class BasicSquare
+    public abstract class BasicSquare
 	{
 		/// <summary>
-		/// Horizontal starting location for drawing a square
+		/// Horizontal starting location for drawing a square.
 		/// </summary>
 		private int nSquareHorizontalLocation;
 		/// <summary>
-		/// vertical starting location for drawing a square
+		/// vertical starting location for drawing a square.
 		/// </summary>
 		private int nSquareVerticalLocation;
 		/// <summary>
-		/// width of the square
+		/// width of the square.
 		/// </summary>
 		private static int nSquareWidth;
 		/// <summary>
-		/// height of the square
+		/// height of the square.
 		/// </summary>
 		private static int nSquareHeight;
 		/// <summary>
-		/// color of the square
+		/// color of the square.
 		/// </summary>
 		private static Color backGroundColor;
 		/// <summary>
-		/// should a border be drawn
+		/// should a border be drawn.
 		/// </summary>
 		private static bool bDrawBorder;
 		/// <summary>
-		/// color of the borders
+		/// color of the borders.
 		/// </summary>
 		private static Color borderColor;
 		/// <summary>
-		/// pen for drawing the borders
+		/// pen for drawing the borders.
 		/// </summary>
 		private static Pen borderPen = null;
 		/// <summary>
-		/// brush for painting the background
+		/// brush for painting the background.
 		/// </summary>
 		private static SolidBrush backGroundBrush = null;
 		/// <summary>
-		/// does the current square require drawing
+		/// does the current square require drawing?
 		/// </summary>
 		private bool bIsValid;
 		/// <summary>
-		/// draw the legend
+		/// draw the legend.
 		/// </summary>
 		private static bool bDrawLegend = false;
 		/// <summary>
-		/// the width of the legend
+		/// the width of the legend.
 		/// </summary>
 		private static int nLegendWidth = 10;
 		/// <summary>
-		/// color of the legend
+		/// color of the legend.
 		/// </summary>
 		private static Color cLegendColor;
 		/// <summary>
-		/// brush for drawing the legend
+		/// brush for drawing the legend.
 		/// </summary>
 		private static SolidBrush legendBrush = null;
 		/// <summary>
-		/// Is the square on the right edge
-		/// Needs to be set to draw the legend
+		/// Is the square on the right edge needs to be set to draw the legend.
 		/// </summary>
 		private bool bIsRightEdgeSquare;
 		/// <summary>
-		/// is the square a bottom square 
-		/// needs to be set to draw the legend
+		/// is the square a bottom square needs to be set to draw the legend.
 		/// </summary>
 		private bool bIsBottomSquare;
 		/// <summary>
-		/// the identifier used to store the square in the hash table
+		/// the identifier used to store the square in the hash table.
 		/// </summary>
 		private string strIdentifier;
-		
-
-
 		public int SquareHorizontalLocation
 		{
 			get
@@ -92,7 +83,6 @@ namespace BoardControl
 				nSquareHorizontalLocation = value;
 			}
 		}
-
 		public int SquareVerticalLocation
 		{
 			get
@@ -104,7 +94,6 @@ namespace BoardControl
 				nSquareVerticalLocation = value;
 			}
 		}
-
 		public int SquareWidth
 		{
 			get
@@ -116,7 +105,6 @@ namespace BoardControl
 				nSquareWidth = value;
 			}
 		}
-
 		public int SquareHeight
 		{
 			get
@@ -128,7 +116,6 @@ namespace BoardControl
 				nSquareHeight = value;
 			}
 		}
-
 		public Color BackGroundColor
 		{
 			get
@@ -140,7 +127,6 @@ namespace BoardControl
 				backGroundColor = value;
 			}
 		}
-
 		public bool DrawBorder
 		{
 			get
@@ -152,7 +138,6 @@ namespace BoardControl
 				bDrawBorder = value;
 			}
 		}
-
 		public Color BorderColor
 		{
 			get
@@ -164,7 +149,6 @@ namespace BoardControl
 				borderColor = value;
 			}
 		}
-
 		public Pen BorderPen
 		{
 			get
@@ -176,7 +160,6 @@ namespace BoardControl
 				borderPen = value;
 			}
 		}
-
 		public SolidBrush BackGroundBrush
 		{
 			get
@@ -188,7 +171,6 @@ namespace BoardControl
 				backGroundBrush = value;
 			}
 		}
-
 		public bool IsValid
 		{
 			get
@@ -200,7 +182,6 @@ namespace BoardControl
 				bIsValid = value;
 			}
 		}
-
 		public bool DrawLegend
 		{
 			get
@@ -212,7 +193,6 @@ namespace BoardControl
 				bDrawLegend = value;
 			}
 		}
-
 		public int LegendWidth
 		{
 			get
@@ -224,7 +204,6 @@ namespace BoardControl
 				nLegendWidth = value;
 			}
 		}
-
 		public Color LegendColor
 		{
 			get
@@ -236,7 +215,6 @@ namespace BoardControl
 				cLegendColor = value;
 			}
 		}
-
 		public SolidBrush LegendBrush
 		{
 			get
@@ -248,7 +226,6 @@ namespace BoardControl
 				legendBrush = value;
 			}
 		}
-
 		public bool IsRightEdgeSquare
 		{
 			get
@@ -260,7 +237,6 @@ namespace BoardControl
 				bIsRightEdgeSquare = value;
 			}
 		}
-
 		public bool IsBottomSquare
 		{
 			get
@@ -272,7 +248,6 @@ namespace BoardControl
 				bIsBottomSquare = value;
 			}
 		}
-
 		public string Identifier
 		{
 			get
@@ -284,7 +259,6 @@ namespace BoardControl
 				strIdentifier = value;
 			}
 		}
-
 		public BasicSquare()
 		{
 			SquareWidth = 0;
@@ -312,7 +286,6 @@ namespace BoardControl
 			Identifier = strIdentifier;
 
 		}
-
 		public BasicSquare( int squareWidth, int squareHeight, string identifier )
 		{
 			SquareWidth = squareWidth;
@@ -339,7 +312,6 @@ namespace BoardControl
 
 			Identifier = identifier;
 		}
-
 		public BasicSquare( int squareWidth, int squareHeight, int squareHorizontalLocation, int squareVerticalLocation, string identifier )
 		{
 			SquareWidth = squareWidth;
@@ -366,7 +338,6 @@ namespace BoardControl
 
 			Identifier = identifier;
 		}
-
 		public virtual void DrawSquare( Graphics grfx )
 		{
 
@@ -427,21 +398,15 @@ namespace BoardControl
 		///	IsValid = true;
 		}
 
-
-		/// functions the child squares must implement
-		/// I Consider these to be implementation specific 
-		/// but admit it's an arbitrary choice
+		// functions the child squares must implement. Considered to be implementation-specific but it's an arbitrary choice
 		
 		/// <summary>
-		/// does the square have a critter or piece on it
+		/// Does the square have a critter or piece on it?
 		/// </summary>
-		/// <returns></returns>
 		public abstract bool IsOccupied();
-
 		/// <summary>
-		/// what currently occupies the square
+		/// What currently occupies the square
 		/// </summary>
-		/// <returns></returns>
 		public abstract string OccupiedName();
 	}
 }

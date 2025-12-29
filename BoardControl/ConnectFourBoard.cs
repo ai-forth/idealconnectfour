@@ -10,29 +10,16 @@ namespace BoardControl
 {
     public class ConnectFourBoard : Board
     {
-        /// <summary>
-        /// has the board been intialized
-        /// </summary>
-        private static bool bIsInitialized = false;
-
+        static bool boardIsInitialized = false;
         /// debug helper
         private bool bDisplayBestMove = false;
-
-
-        /// <summary>
-        /// class object to play the connect four game
-        /// </summary>
         private ConnectFourGame connectFourGame = null;
-        /// <summary>
-        /// pattern collection for this game
-        /// </summary>
         private ConnectFourPatternCollection patternCollection;
         private ConnectFourPatternCollection historicalPatternCollection;
         private string strFileName = "ConnectFourPatterns.xml";
         private ArrayList arrayValidSquares;
 
         private System.ComponentModel.IContainer components = null;
-
 
         /// <summary>
         /// Weighting values for the different types of patterns
@@ -47,21 +34,15 @@ namespace BoardControl
         const int nMemoryTacticalWeight = 103;
         const int nMemoryWarningWeight = 102;
 
-        /// <summary>
-        /// try to make the random moves more
-        /// well random really
-        /// </summary>
+        // try to make the random moves more random
         private char chPreviousMove;
-
 
         public ConnectFourBoard()
         {
             // This call is required by the Windows Form Designer.
             InitializeComponent();
-
             // TODO: Add any initialization after the InitializeComponent call
-            ///InitializeBoard();
-
+            //InitializeBoard();
         }
 
         /// <summary>
@@ -79,14 +60,7 @@ namespace BoardControl
             base.Dispose(disposing);
         }
 
-        public ConnectFourGame GetConnectFourGame
-        {
-            get
-            {
-                return connectFourGame;
-            }
-        }
-
+        public ConnectFourGame GetConnectFourGame { get { return connectFourGame; } }
 
         /// <summary>
         /// Initialize the board
@@ -99,12 +73,9 @@ namespace BoardControl
             SquareHeight = 75;
             BoardWidth = HorizontalSquares * SquareWidth;
             BoardHeight = VerticalSquares * SquareHeight;
-
-            /// create the board
+            // Create the board
             Clear();
-
-            /// add the Squares
-
+            // Add the Squares
             GetHashTable.Add("AA", new ConnectFourSquare(SquareWidth, SquareHeight, 0, 0, "AA"));
             GetHashTable.Add("AB", new ConnectFourSquare(SquareWidth, SquareHeight, 0, SquareHeight, "AB"));
             GetHashTable.Add("AC", new ConnectFourSquare(SquareWidth, SquareHeight, 0, SquareHeight * 2, "AC"));
@@ -199,9 +170,9 @@ namespace BoardControl
         {
             Graphics grfx = e.Graphics;
 
-            if (bIsInitialized == false)
+            if (boardIsInitialized == false)
             {
-                bIsInitialized = true;
+                boardIsInitialized = true;
                 InitializeBoard();
             }
 
@@ -235,13 +206,11 @@ namespace BoardControl
                 square.DrawSquare(grfx);
             }
         }
-
         private void OnLoad(object sender, EventArgs e)
         {
             ///			InitializeBoard();
 
         }
-
 
         public ConnectFourSquareInfo GetConnectFourSquareInfo(string squareIdentifier)
         {
@@ -254,20 +223,17 @@ namespace BoardControl
         }
 
         /// <summary>
-        /// set the player colour
+        /// Set the player color
         /// </summary>
         /// <param name="bRed">true == player is red false == blue</param>
         public void SetPlayerColour(bool red)
         {
             connectFourGame.PlayerIsRed = red;
         }
-
         public void SetStarted(bool started)
         {
             connectFourGame.IsStarted = started;
-
             Random rand = new Random(DateTime.Now.Second);
-
             int nTest = rand.Next(2);
             if (nTest >= 1)
                 ComputersMove();
@@ -277,12 +243,10 @@ namespace BoardControl
         {
             connectFourGame.IsPaused = paused;
         }
-
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
             if (connectFourGame.IsStarted == false || connectFourGame.IsPaused == true)
                 return;
-
             if (connectFourGame.IsComputersMove == true)
                 return;
 
@@ -291,12 +255,9 @@ namespace BoardControl
             {
                 Cursor.Current = Cursors.WaitCursor;
                 ConnectFourSquareInfo squareInfo = GetConnectFourSquareInfo(square.Identifier);
-
-
-                /// Make sure that gravity has an effect in this game
+                // Make sure that gravity has an effect in this game
                 StringBuilder strTest = new StringBuilder(GetIdentifierBelow(square.Identifier));
                 ConnectFourSquareInfo squareTest;
-
                 squareTest = connectFourGame.GetSquareInfo(strTest.ToString());
 
                 while (squareTest != null)
@@ -314,8 +275,6 @@ namespace BoardControl
                         squareTest = null;
 
                 }
-
-
                 if (squareInfo.IsOccupied == false)
                 {
                     if (connectFourGame.PlayerIsRed == true)
@@ -360,26 +319,19 @@ namespace BoardControl
                 square.IsValid = false;
                 square.IsWinningSquare = false;
             }
-
             Invalidate();
-
             patternCollection.Clear();
-
             connectFourGame.OutputText = "Game Reset";
         }
 
         public bool CheckForWin()
         {
-            /// check to see if we have four of the same colour anywhere on the board
-
-            /// start at bottom left hand corner and move right checking 
-            /// right, up, left diagonal, right diagonal
-
-
+            // Check to see if we have four of the same color anywhere on the board.
+            // Start at bottom left hand corner and move right checking right, up, left diagonal, right diagonal.
             bool bWinning = false;
             bool bRedWon = false;
 
-            /// check for red
+            // Check for red.
             foreach (DictionaryEntry dicEnt in GetHashTable)
             {
                 ConnectFourSquare square = (ConnectFourSquare)dicEnt.Value;
@@ -407,7 +359,6 @@ namespace BoardControl
 
                     break;
                 }
-
                 if (CheckSquaresAbove(square.Identifier, true) == true)
                 {
                     bWinning = true;
@@ -431,8 +382,6 @@ namespace BoardControl
 
                     break;
                 }
-
-
                 if (CheckSquaresAboveRight(square.Identifier, true) == true)
                 {
                     bWinning = true;
@@ -456,7 +405,6 @@ namespace BoardControl
 
                     break;
                 }
-
                 if (CheckSquaresAboveLeft(square.Identifier, true) == true)
                 {
                     bWinning = true;
@@ -581,7 +529,6 @@ namespace BoardControl
                     }
                 }
             }
-
             if (bWinning == true)
             {
                 SetPaused(true);
@@ -607,11 +554,10 @@ namespace BoardControl
             }
 
             return false;
-
         }
 
         /// <summary>
-        /// check the squares to the right to see if there is a win
+        /// Check the squares to the right to see if there is a win.
         /// </summary>
         /// <param name="identifier">square identifier ie "AF"</param>
         /// <param name="bRed">are we looking for red or blue</param>
@@ -690,7 +636,6 @@ namespace BoardControl
 
             return true;
         }
-
         public bool CheckSquaresAbove(string identifier, bool red)
         {
             ConnectFourSquareInfo startSquare = connectFourGame.GetSquareInfo(identifier);
@@ -765,7 +710,6 @@ namespace BoardControl
 
             return true;
         }
-
         public bool CheckSquaresAboveRight(string identifier, bool red)
         {
             ConnectFourSquareInfo startSquare = connectFourGame.GetSquareInfo(identifier);
@@ -840,7 +784,6 @@ namespace BoardControl
 
             return true;
         }
-
         public bool CheckSquaresAboveLeft(string identifier, bool red)
         {
             ConnectFourSquareInfo startSquare = connectFourGame.GetSquareInfo(identifier);
@@ -916,13 +859,11 @@ namespace BoardControl
             return true;
 
         }
-
         /// <summary>
         /// If the computer doesn't move the suggested square can the player win the game by moving there
         /// next turn
         /// </summary>
         /// <param name="squareIdentifier"></param>
-        /// <returns></returns>
         private bool IsWinningMoveForPlayer(string squareIdentifier)
         {
             string strTestSquare = squareIdentifier;
@@ -1053,7 +994,6 @@ namespace BoardControl
             return false;
 
         }
-
         /// <summary>
         /// If the computer moves to the suggested square will the player win with the next move.
         /// </summary>
@@ -1189,7 +1129,6 @@ namespace BoardControl
 
             return false;
         }
-
         /// <summary>
         /// save the patterns to a file Called whenever the game is won.
         /// </summary>
@@ -1241,7 +1180,6 @@ namespace BoardControl
 
             xmlWriter.Close();
         }
-
         /// <summary>
         /// Get All valid or occupied squares
         /// Store all available patterns for this move
@@ -2907,10 +2845,10 @@ namespace BoardControl
             }
         }
 
-        #region Process Important Patterns for this move
+        #region Process important patterns for this move
 
         /// <summary>
-        /// process the patterns and give each a weighting
+        /// Process the patterns and give each a weight.
         /// </summary>
         /// <param name="patterns">group of patterns to process can be aggressive, defensive etc</param>
         /// <param name="patternWeight">weight value attributed to this type of pattern</param>
@@ -3320,9 +3258,8 @@ namespace BoardControl
             }
 
         }
-
         /// <summary>
-        /// make a random move for the computer when there are no patterns to follow
+        /// Make a random move for the computer when there are no patterns to follow.
         /// </summary>
         private bool MakeRandomMove()
         {
@@ -3428,10 +3365,7 @@ namespace BoardControl
 
             return true;
         }
-
-        /// <summary>
-        /// someone has won
-        /// </summary>
+        // Someone has won
         private void OnWin(ConnectFourSquareInfo squareInfo)
         {
 

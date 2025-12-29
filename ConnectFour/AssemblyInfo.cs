@@ -9,9 +9,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("Connect Four")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Cartheur Research")]
 [assembly: AssemblyProduct("Learning Connect Four")]
-[assembly: AssemblyCopyright("pseudonym67")]
+[assembly: AssemblyCopyright("2003-2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 

@@ -1,10 +1,7 @@
-using System;
-
 namespace BoardControl
 {
 	/// <summary>
-	/// Basic game class to hold gams related stuff that will be 
-	/// generic to all the games ( will get it's own file later )
+	/// Basic game class to hold games-related stuff that will be generic to all the games (will get it's own file later).
 	/// </summary>
 	public abstract class BasicGame
 	{
@@ -20,8 +17,13 @@ namespace BoardControl
 		/// haqs the game been paused
 		/// </summary>
 		public bool bGamePaused;
-
-		public bool GameRestarted
+        public BasicGame()
+        {
+            GameRestarted = false;
+            GameStarted = false;
+            GamePaused = false;
+        }
+        public bool GameRestarted
 		{
 			get
 			{
@@ -32,7 +34,6 @@ namespace BoardControl
 				bGameRestarted = value;
 			}
 		}
-
 		public bool GameStarted 
 		{
 			get
@@ -44,7 +45,6 @@ namespace BoardControl
 				bGameStarted = value;
 			}
 		}
-
 		public bool GamePaused 
 		{
 			get
@@ -55,13 +55,6 @@ namespace BoardControl
 			{
 				bGamePaused = value;
 			}
-		}
-
-		public BasicGame()
-		{
-			GameRestarted = false;
-			GameStarted = false;
-			GamePaused = false;
 		}
 	}
 }

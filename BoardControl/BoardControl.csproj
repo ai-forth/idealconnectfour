@@ -98,6 +98,8 @@
     <Compile Include="BasicGamePattern.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BasicGamePatternCollection.cs" />
+    <Compile Include="BasicGamePiece.cs" />
     <Compile Include="BasicSquare.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -113,9 +115,12 @@
     <Compile Include="ConnectFourPattern.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ConnectFourPatternCollection.cs" />
+    <Compile Include="ConnectFourPiece.cs" />
     <Compile Include="ConnectFourSquare.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ConnectFourSquareInfo.cs" />
     <Compile Include="ControlDisplaySquare.cs">
       <SubType>Code</SubType>
     </Compile>

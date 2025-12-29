@@ -9,9 +9,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("BoardControl")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Cartheur Research")]
 [assembly: AssemblyProduct("BoardControl")]
-[assembly: AssemblyCopyright("pseudonym67")]
+[assembly: AssemblyCopyright("m.e.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 

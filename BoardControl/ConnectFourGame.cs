@@ -1,15 +1,11 @@
-using System;
 using System.Collections;
 
 namespace BoardControl
 {
-	/// <summary>
-	/// class to control the game of connect four
-	/// </summary>
 	public class ConnectFourGame : BasicGame
 	{
 		/// <summary>
-		/// array to hold the information about the squares in the game
+		/// Array to hold the information about the squares in the game
 		/// </summary>
 		private ArrayList arraySquares;
 		/// <summary>
@@ -44,7 +40,6 @@ namespace BoardControl
 		/// has the game game been paused
 		/// </summary>
 		private bool bIsPaused;
-
 		public ArrayList ArraySquares
 		{
 			get
@@ -52,7 +47,6 @@ namespace BoardControl
 				return arraySquares;
 			}
 		}
-
 		public bool PlayerIsRed
 		{
 			get
@@ -64,7 +58,6 @@ namespace BoardControl
 				bPlayerIsRed = value;
 			}
 		}
-
 		public string OutputText
 		{
 			get
@@ -78,7 +71,6 @@ namespace BoardControl
 				strOutputText = value;
 			}
 		}
-
 		public bool NewOutputText
 		{
 			get
@@ -90,7 +82,6 @@ namespace BoardControl
 				bNewOutputText = value;
 			}
 		}
-
 		public bool IsComputersMove
 		{
 			get
@@ -102,7 +93,6 @@ namespace BoardControl
 				bIsComputersMove = false;
 			}
 		}
-
 		public bool IsGameWon
 		{
 			get
@@ -114,7 +104,6 @@ namespace BoardControl
 				bIsGameWon = value;
 			}
 		}
-
 		public bool HasPlayerWon
 		{
 			get
@@ -126,7 +115,6 @@ namespace BoardControl
 				bHasPlayerWon = value;
 			}
 		}
-
 		public bool IsStarted
 		{
 			get
@@ -138,7 +126,6 @@ namespace BoardControl
 				bIsStarted = value;
 			}
 		}
-
 		public bool IsPaused
 		{
 			get
@@ -150,7 +137,6 @@ namespace BoardControl
 				bIsPaused = value;
 			}
 		}
-
 		public ConnectFourGame()
 		{
 			//
@@ -210,7 +196,6 @@ namespace BoardControl
 			IsStarted = false;
 			IsPaused = false;
 		}
-
 		public void SetSquare( string squareIdentifier, string squareColor )
 		{
 			bool bFound = false;
@@ -235,7 +220,6 @@ namespace BoardControl
 				}
 			}
 		}
-
 		public ConnectFourSquareInfo GetSquareInfo( string squareIdentifier )
 		{
 			for( int i=0; i<arraySquares.Count; i++ )
@@ -250,23 +234,17 @@ namespace BoardControl
 
 			return null;
 		}
-
-		/// <summary>
-		/// get the identifier for a square from the square info location
-		/// </summary>
-		/// <param name="nValue"></param>
-		/// <returns></returns>
-		public string GetIdentifierAt( int identifierValue )
+        /// <summary>
+        /// Get the identifier for a square from the square info location.
+        /// </summary>
+        /// <param name="identifierValue"></param>
+        public string GetIdentifierAt( int identifierValue )
 		{
 			if( identifierValue > arraySquares.Count )
 				return null;
 
 			return ( ( ConnectFourSquareInfo )arraySquares[ identifierValue ] ).SquareIdentifier;
 		}
-
-		/// <summary>
-		/// reset the game back to the start
-		/// </summary>
 		public void Reset()
 		{
 			for( int i=0; i<arraySquares.Count; i++ )
@@ -275,79 +253,5 @@ namespace BoardControl
 			}
 		}
 
-	}
-
-
-	/// <summary>
-	/// class to hold the info needed by each square to play the game
-	/// </summary>
-	public class ConnectFourSquareInfo
-	{
-		/// <summary>
-		/// string to hold the square identifier
-		/// </summary>
-		private string strSquareIdentifier;
-		/// <summary>
-		/// square colour will be "EMPTY" ( Green ) "RED" or "BLUE"
-		/// </summary>
-		private string strSquareColor; 
-		/// <summary>
-		/// has the square been occupied
-		/// </summary>
-		private bool bIsOccupied;
-
-		public string SquareIdentifier
-		{
-			get
-			{
-				return strSquareIdentifier;
-			}
-			set
-			{
-				strSquareIdentifier = value;
-			}
-		}
-
-		public string SquareColor
-		{
-			get
-			{
-				return strSquareColor;
-			}
-			set
-			{
-				strSquareColor = value;
-			}
-		}
-
-		public bool IsRed 
-		{
-			get
-			{
-				if( strSquareColor == "RED" )
-					return true;
-				else
-					return false;
-			}
-		}
-
-		public bool IsOccupied 
-		{
-			get
-			{
-				return bIsOccupied;
-			}
-			set
-			{
-				bIsOccupied = value;
-			}
-		}
-
-		public ConnectFourSquareInfo( string squareIdentifier, string squareColor )
-		{
-			SquareIdentifier = squareIdentifier;
-			SquareColor = squareColor;
-			IsOccupied = false;
-		}
 	}
 }
